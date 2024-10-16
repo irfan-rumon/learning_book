@@ -1,6 +1,6 @@
 <?php
 
-// English language strings for local_certificate_manager plugin
+// English language strings for mod_learningbook plugin
 
 $string['pluginname'] = 'Learning Book'; // Name of your plugin as it will appear in Moodle
 $string['receiveddate'] = 'Received Date';
@@ -10,7 +10,8 @@ $string['coursename'] = 'Course Name';
 $string['internal'] = 'Internal';
 $string['external'] = 'External';
 $string['uploadimage'] = 'Upload Image';
-$string['uploadcertificate'] = 'Upload Certificate';
+$string['addtitle'] = 'Add Title';
+$string['addcontent'] = 'Add Content';
 $string['username'] = 'User name';
 $string['uploadfile'] = 'Upload File';
 $string['viewpdf'] = 'Upload Image';
