@@ -32,15 +32,40 @@ defined('MOODLE_INTERNAL') || die;
  * @param mod_learningbook_mod_form $mform
  * @return int new learningbook instance id
  */
-function learningbook_add_instance(stdClass $data, mod_learningbook_mod_form $mform = null) {
+function learningbook_add_instance(stdClass $learningbook, mod_learningbook_mod_form $mform = null) {
     global $DB;
 
-    $data->timecreated = time();
-    $data->timemodified = $data->timecreated;
-    $data->course = $data->course;
+    $learningbook->timecreated = time();
+    $learningbook->timemodified = $learningbook->timecreated;
 
-    $id = $DB->insert_record('learning_book', $data);
+    // Make sure the intro and introformat are set
+    if (!isset($learningbook->intro)) {
+        $learningbook->intro = '';
+    }
+    if (!isset($learningbook->introformat)) {
+        $learningbook->introformat = FORMAT_HTML;
+    }
 
-    return $id;
+    // Insert the learningbook record
+    $learningbook->id = $DB->insert_record('learningbook', $learningbook);
+
+    // We need to use context now, so we need to make sure all needed info is already in db
+    $cmid = $learningbook->coursemodule;
+    $DB->set_field('course_modules', 'instance', $learningbook->id, array('id' => $cmid));
+
+    // Any other processing needed
+
+    return $learningbook->id;
+}
+
+function learningbook_supports($feature) {
+    switch($feature) {
+        case FEATURE_MOD_INTRO:
+            return true;
+        case FEATURE_BACKUP_MOODLE2:
+            return true;
+        default:
+            return null;
+    }
 }
 

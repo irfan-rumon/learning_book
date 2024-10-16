@@ -19,3 +19,8 @@ $string['username'] = 'User  Name';
 $string['courseid'] = 'Course ID';
 $string['username'] = 'User Name';
 $string['error_alreadyexists'] = 'Already Exists! Add a new one.';
+$string['modulename'] = 'Learning Book';
+$string['modulenameplural'] = 'Learning Books';
+$string['learningbookname'] = 'Learning Book name';
+$string['learningbookname_help'] = 'This is the name of the learning book that will appear on the course page.';
+
