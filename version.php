@@ -1,30 +1,20 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Learning Book plugin version info
  *
- * @package     mod_learningbook
- * @author      Brain Station 23 Ltd.
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * This file contains the version information for the Learning Book module.
+ * It defines the required Moodle version and provides the component name,
+ * plugin version, and the cron execution frequency.
+ *
+ * @package     mod_learningbook // Package name (unique identifier of the plugin)
+ * @author      A S M IRFAN // Author of the plugin
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later // License under which the plugin is distributed
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die; // Prevents direct access to this file via URL.
 
-$plugin->component = 'mod_learningbook'; // Full name of the plugin (used for diagnostics)
-$plugin->version   = 2024101600; // The current module version (Date: YYYYMMDDXX).
-$plugin->requires  = 2021120100; // Requires this Moodle version.
-$plugin->cron      = 0;          // Period for cron to check this module (secs)
+$plugin->component = 'mod_learningbook'; // Full name of the plugin (used for diagnostics and during installation).
+$plugin->version   = 2024101600; // The current version of the plugin (Date format: YYYYMMDDXX, where XX is a version increment for that day).
+$plugin->requires  = 2021120100; // The minimum Moodle version required for this plugin (based on Moodle release number).
+$plugin->cron      = 0;          // How often Moodle cron will check this plugin for updates (0 means it doesn't need to be checked).
