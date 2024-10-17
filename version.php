@@ -15,7 +15,7 @@
 defined('MOODLE_INTERNAL') || die; // Prevents direct access to this file via URL.
 
 $plugin->component = 'mod_learningbook'; // Full name of the plugin (used for diagnostics and during installation).
-$plugin->version   = 2024101603; // The current version of the plugin (Date format: YYYYMMDDXX, where XX is a version increment for that day).
+$plugin->version   = 2024101604; // The current version of the plugin (Date format: YYYYMMDDXX, where XX is a version increment for that day).
 $plugin->requires  = 2021120100; // The minimum Moodle version required for this plugin (based on Moodle release number).
 $plugin->maturity  = MATURITY_ALPHA;
 $plugin->release   = 'v0.1';

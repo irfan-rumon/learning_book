@@ -15,6 +15,7 @@ $string['title'] = 'Title';
 $string['subtitle'] = 'Subtitle';
 
 $string['chapter'] = 'Chapter';
+$string['pagecontent'] = 'Page Content';
 
 $string['startingpage'] = 'Starting Page';
 $string['linesperpage'] = 'Lines Per Page';

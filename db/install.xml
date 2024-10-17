@@ -24,40 +24,21 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="bookid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="cmid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="starting_page" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="lines_per_page" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="subtitle" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="content" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-        <KEY NAME="bookid" TYPE="foreign" FIELDS="bookid" REFTABLE="learning_book" REFFIELDS="id"/>
+        <KEY NAME="bookid" TYPE="foreign" FIELDS="bookid" REFTABLE="learningbook" REFFIELDS="id"/>
       </KEYS>
       <INDEXES>
         <INDEX NAME="bookid" UNIQUE="false" FIELDS="bookid"/>
       </INDEXES>
     </TABLE>
     
-    <TABLE NAME="learningbook_page_content" COMMENT="Defines page content">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="chapterid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="pagenum" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="content" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="contentformat" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="html" SEQUENCE="false"/>
-        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-        <KEY NAME="chapterid" TYPE="foreign" FIELDS="chapterid" REFTABLE="book_chapter" REFFIELDS="id"/>
-      </KEYS>
-      <INDEXES>
-        <INDEX NAME="chapterid_pagenum" UNIQUE="true" FIELDS="chapterid, pagenum"/>
-      </INDEXES>
-    </TABLE>
+
   </TABLES>
 </XMLDB>

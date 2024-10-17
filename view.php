@@ -4,7 +4,7 @@ require_once('../../config.php');
 require_once('lib.php');
 
 $id = required_param('id', PARAM_INT); // Course Module ID
-$chapter_url = new moodle_url('/mod/learningbook/chapter.php', array('id' => $id));
+
 
 // Get the necessary data
 if (!$cm = get_coursemodule_from_id('learningbook', $id)) {
@@ -20,6 +20,8 @@ if (!$learningbook = $DB->get_record('learningbook', array('id' => $cm->instance
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
+$chapter_url = new moodle_url('/mod/learningbook/chapter.php', array('cm' => $id, 'course' => $course->id));
+
 // Print the page header
 $PAGE->set_url('/mod/learningbook/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($learningbook->name));
@@ -33,7 +35,7 @@ echo $OUTPUT->header();
 echo html_writer::start_tag('div', array('class' => 'top-right-button'));
 echo html_writer::tag('button', 'Add New Chapter', array(
     'class' => 'add-btn', 
-    'onclick' => "window.location.href='{$chapter_url}';",
+    'onclick' => "window.location.href='" . $chapter_url->out(false) . "';",
 ));
 echo html_writer::end_tag('div');
 
@@ -41,11 +43,7 @@ echo html_writer::end_tag('div');
 // Replace the following lines with your actual content display logic
 echo $OUTPUT->heading(format_string($learningbook->name));
 
-// Display basic info about the learning book
-echo html_writer::start_tag('div', array('class' => 'learningbook-info'));
-echo html_writer::tag('p', 'Created At: ' . userdate($learningbook->timecreated));
-echo html_writer::tag('p', 'Last Modified At: ' . userdate($learningbook->timemodified));
-echo html_writer::end_tag('div');
+
 
 // Book sliding content
 echo html_writer::start_tag('div', array('class' => 'learningbook-content'));
