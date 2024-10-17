@@ -175,44 +175,47 @@ echo html_writer::start_tag('div', array('class' => 'learningbook-content'));
     }
 
     .btn-nav {
-    display: inline-block;
-    padding: 10px 25px;
-    background-color: #ef9f00;
-    border: none;
-    color: white;
-    font-size: 16px;
-    font-family: 'Calibri', sans-serif;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        display: inline-block;
+        padding: 10px 25px;
+        background-color: #ef9f00;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-family: 'Calibri', sans-serif;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-.btn-nav:hover {
-    background-color: #ffb33b;
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
-    transform: translateY(-2px);
-}
+    .btn-nav:hover {
+        background-color: #ffb33b;
+        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
 
-.btn-nav:active {
-    background-color: #e68a00;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(0);
-}
+    .btn-nav:active {
+        background-color: #e68a00;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+    }
 
-.add-btn{
-    margin: 20px 0px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #0476D0;
-    border: none;
-    color: white;
-    font-size: 16px;
-    font-family: 'Calibri', sans-serif;
+    .add-btn{
+        margin: 20px 0px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #0476D0;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-family: 'Calibri', sans-serif;
+    }
 
-}
+    .no-overflow {
+        display: none;
+    }
 
 </style>
 
@@ -296,6 +299,8 @@ echo html_writer::start_tag('div', array('class' => 'learningbook-content'));
             right[si - 1].style.zIndex = "auto";
         }, 350);
     }
+
+    
 </script>
 
 <?php
