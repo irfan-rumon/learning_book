@@ -20,10 +20,11 @@
       </KEYS>
     </TABLE>
 
-    <TABLE NAME="book_chapter" COMMENT="Defines book_chapters">
+    <TABLE NAME="learningbook_chapter" COMMENT="Defines book_chapters">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="bookid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="cmid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="starting_page" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="lines_per_page" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
@@ -40,7 +41,7 @@
       </INDEXES>
     </TABLE>
     
-    <TABLE NAME="page_info" COMMENT="Defines page content">
+    <TABLE NAME="learningbook_page_content" COMMENT="Defines page content">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="chapterid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>

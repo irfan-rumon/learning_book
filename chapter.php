@@ -77,13 +77,14 @@ if ($mform->is_cancelled()) {
         // Update existing chapter
         $fromform->id = $chapterid;
         $fromform->timemodified = time();
-        $DB->update_record('book_chapter', $fromform);
+        $DB->update_record('learningbook_chapter', $fromform);
     } else {
         // Add new chapter
         $fromform->bookid = $learningbook->id;
+        $fromform->cmid = $id;
         $fromform->timecreated = time();
         $fromform->timemodified = $fromform->timecreated;
-        $DB->insert_record('book_chapter', $fromform);
+        $DB->insert_record('learningbook_chapter', $fromform);
     }
     redirect(new moodle_url('/mod/learningbook/view.php', array('id' => $cm->id)));
 }
