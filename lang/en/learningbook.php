@@ -10,6 +10,20 @@ $string['coursename'] = 'Course Name';
 $string['internal'] = 'Internal';
 $string['external'] = 'External';
 $string['uploadimage'] = 'Upload Image';
+
+$string['title'] = 'Title';
+$string['subtitle'] = 'Subtitle';
+
+$string['editchapter'] = 'Edit Chapter';
+
+$string['startingpage'] = 'Starting Page';
+$string['linesperpage'] = 'Lines Per Page';
+
+$string['chaptertitle'] = 'Chapter Title';
+$string['chaptersubtitle'] = 'Chapter Subtitle';
+
+$string['title'] = 'Title';
+
 $string['addtitle'] = 'Add Title';
 $string['addcontent'] = 'Add Content';
 $string['username'] = 'User name';

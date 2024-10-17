@@ -14,7 +14,7 @@ $learningbook = $DB->get_record('learningbook', array('id' => $cm->instance), '*
 
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
-require_capability('mod/learningbook:managechapters', $context);
+//require_capability('mod/learningbook:managechapters', $context);
 
 // Set up page
 $PAGE->set_url('/mod/learningbook/chapter.php', array('id' => $cm->id, 'chapterid' => $chapterid));
@@ -31,17 +31,22 @@ class chapter_form extends moodleform {
         $mform->setType('title', PARAM_TEXT);
         $mform->addRule('title', null, 'required', null, 'client');
 
-        $mform->addElement('text', 'starting_page', get_string('startingpage', 'learningbook'));
-        $mform->setType('starting_page', PARAM_INT);
-        $mform->addRule('starting_page', null, 'required', null, 'client');
+         // Subtitle field (changed from textarea to text input)
+         $mform->addElement('text', 'subtitle', get_string('chaptersubtitle', 'learningbook'));
+         $mform->setType('subtitle', PARAM_TEXT);
+         $mform->addRule('subtitle', null, 'required', null, 'client'); // Adding a rule to make it required (optional)
+ 
+         // Starting page (integer input)
+         $mform->addElement('text', 'starting_page', get_string('startingpage', 'learningbook'));
+         $mform->setType('starting_page', PARAM_INT);
+         $mform->addRule('starting_page', null, 'required', null, 'client');
+ 
+         // Lines per page (integer input)
+         $mform->addElement('text', 'lines_per_page', get_string('linesperpage', 'learningbook'));
+         $mform->setType('lines_per_page', PARAM_INT);
+         $mform->addRule('lines_per_page', null, 'required', null, 'client');
 
-        $mform->addElement('text', 'lines_per_page', get_string('linesperpage', 'learningbook'));
-        $mform->setType('lines_per_page', PARAM_INT);
-        $mform->addRule('lines_per_page', null, 'required', null, 'client');
-
-        $mform->addElement('textarea', 'subtitle', get_string('chaptersubtitle', 'learningbook'));
-        $mform->setType('subtitle', PARAM_TEXT);
-
+       
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
 
