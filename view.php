@@ -4,6 +4,7 @@ require_once('../../config.php');
 require_once('lib.php');
 
 $id = required_param('id', PARAM_INT); // Course Module ID
+$chapter_url = new moodle_url('/mod/learningbook/chapter.php', array('id' => $id));
 
 // Get the necessary data
 if (!$cm = get_coursemodule_from_id('learningbook', $id)) {
@@ -27,6 +28,15 @@ $PAGE->set_context($context);
 
 // Output starts here
 echo $OUTPUT->header();
+
+// Add a button in the top right corner
+echo html_writer::start_tag('div', array('class' => 'top-right-button'));
+echo html_writer::tag('button', 'Add New Chapter', array(
+    'class' => 'add-btn', 
+    'onclick' => "window.location.href='{$chapter_url}';",
+));
+echo html_writer::end_tag('div');
+
 
 // Replace the following lines with your actual content display logic
 echo $OUTPUT->heading(format_string($learningbook->name));
@@ -190,6 +200,18 @@ echo html_writer::start_tag('div', array('class' => 'learningbook-content'));
     background-color: #e68a00;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     transform: translateY(0);
+}
+
+.add-btn{
+    margin: 20px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #0476D0;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Calibri', sans-serif;
+
 }
 
 </style>

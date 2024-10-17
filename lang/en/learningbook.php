@@ -14,7 +14,7 @@ $string['uploadimage'] = 'Upload Image';
 $string['title'] = 'Title';
 $string['subtitle'] = 'Subtitle';
 
-$string['editchapter'] = 'Edit Chapter';
+$string['chapter'] = 'Chapter';
 
 $string['startingpage'] = 'Starting Page';
 $string['linesperpage'] = 'Lines Per Page';

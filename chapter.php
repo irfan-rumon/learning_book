@@ -90,6 +90,6 @@ if ($mform->is_cancelled()) {
 
 // Display form
 echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('editchapter', 'learningbook'));
+echo $OUTPUT->heading(get_string('chapter', 'learningbook'));
 $mform->display();
 echo $OUTPUT->footer();
