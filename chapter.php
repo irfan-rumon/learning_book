@@ -55,29 +55,37 @@ class chapter_form extends moodleform {
 }
 
 // Instantiate form
-$mform = new chapter_form(null, array('context' => $context, 'cm' => $cmId, 'course' => $courseId, 'chapter' => $chapterId));
+$mform = new chapter_form($PAGE->url, array(
+    'context' => $context, 
+    'cm' => $cm->id, 
+    'course' => $course->id, 
+    'chapter' => $chapterId,
+    'book' => $bookId
+));
 
 if ($mform->is_cancelled()) {
-    // Handle form cancel operation, if cancel button is present on form
-    redirect(new moodle_url('/mod/learningbook/view.php', array('id' => $cmId)));
-} else if ($fromform = $mform->get_data()) {
+   
+    redirect(new moodle_url('/mod/learningbook/view.php', array('id' => $cm->id)));
+} else if ($formData = $mform->get_data()) {
     // Handle form processing if data is submitted
     $chapter = new stdClass();
-    $chapter->bookid = $cmId;
-    $chapter->title = $fromform->title;
-    $chapter->subtitle = $fromform->subtitle;
-    $chapter->content = $fromform->content_editor['text'];
+    $chapter->bookid = $bookId;
+    $chapter->title = $formData->title;
+    $chapter->subtitle = $formData->subtitle;
+    $chapter->content = $formData->content_editor['text'];
     $chapter->timemodified = time();
 
     //var_dump( $chapter ); die();
 
     if ($chapterId) {
         // Update existing chapter
-        //$chapter->id = $chapterId;
-       // $DB->update_record('learningbook_chapter', $chapter);
+        $chapter->id = $chapterId;
+        $DB->update_record('learningbook_chapter', $chapter);
     } else {
         // Add new chapter
         $chapter->timecreated = time();
+
+        var_dump($chapter); //die();
         $chapterId = $DB->insert_record('learningbook_chapter', $chapter);
     }
 
@@ -86,12 +94,12 @@ if ($mform->is_cancelled()) {
     // $chapter->content = file_save_draft_area_files($draftitemid, $context->id, 'mod_learningbook', 'chapter', $chapterId, array('subdirs'=>0, 'maxbytes'=>$CFG->maxbytes, 'maxfiles'=>-1), $chapter->content);
     // $DB->update_record('learningbook_chapter', $chapter);
 
-    redirect(new moodle_url('/mod/learningbook/view.php', array('id' => $cmId)));
+    redirect(new moodle_url('/mod/learningbook/view.php', array('id' => $cm->id)));
 } else {
     // Form is being displayed for the first time or there were errors
     if ($chapterId) {
         // Editing existing chapter
-        $chapter = $DB->get_record('learningbook_chapter', array('id' => $chapterId), '*', MUST_EXIST);
+        $chapter = $DB->get_record('learningbook_chapter', array('id' => $chapterId, 'bookid' => $bookId), '*', MUST_EXIST);
         $chapter = file_prepare_standard_editor($chapter, 'content', array('subdirs'=>0, 'maxbytes'=>$CFG->maxbytes, 'maxfiles'=>-1, 'changeformat'=>1, 'context'=>$context, 'noclean'=>0, 'trusttext'=>0), $context, 'mod_learningbook', 'chapter', $chapterId);
         $mform->set_data($chapter);
     }
