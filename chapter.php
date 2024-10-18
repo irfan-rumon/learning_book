@@ -7,19 +7,20 @@ require_once($CFG->libdir . '/formslib.php');
 
 global $DB, $PAGE, $OUTPUT, $USER;
 
-$cmId = required_param('cm', PARAM_INT); // Course Module ID
-$courseId = required_param('course', PARAM_INT); //COURSE ID
-$chapterId = optional_param('chapter', 0, PARAM_INT); //OPTIONAL CHAPTER ID FOR EDITING
 
-$cm = get_coursemodule_from_id('learningbook', $cmId, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', array('id' => $courseId), '*', MUST_EXIST);
-$learningbook = $DB->get_record('learningbook', array('id' => $cm->instance), '*', MUST_EXIST);
+$bookId = required_param('book', PARAM_INT); // book ID
+$chapterId = optional_param('chapter', 0, PARAM_INT); // OPTIONAL CHAPTER ID FOR EDITING
+
+$learningbook = $DB->get_record('learningbook', array('id' => $bookId), '*', MUST_EXIST);
+$course = $DB->get_record('course', array('id' => $learningbook->course), '*', MUST_EXIST);
+$cm = get_coursemodule_from_instance('learningbook', $learningbook->id, $course->id, false, MUST_EXIST);
 
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
-$PAGE->set_url('/mod/learningbook/chapter.php', array('cm' => $cmId, 'course' => $courseId, 'chapter' => $chapterId));
-
+$PAGE->set_url('/mod/learningbook/chapter.php', array('book' => $bookId, 'chapter' => $chapterId));
+$PAGE->set_title(format_string($learningbook->name));
+$PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 
 // Define the form

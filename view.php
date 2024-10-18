@@ -20,13 +20,23 @@ if (!$learningbook = $DB->get_record('learningbook', array('id' => $cm->instance
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
-$chapter_url = new moodle_url('/mod/learningbook/chapter.php', array('cm' => $id, 'course' => $course->id));
+
+
+$bookRecord = $DB->get_record('learningbook', array('course' => $course->id, 'cm' => $id), 'id');
+
+
+
+
+$chapter_url = new moodle_url('/mod/learningbook/chapter.php', array('book' => $bookRecord->id));
+
 
 // Print the page header
 $PAGE->set_url('/mod/learningbook/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($learningbook->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
+
+
 
 // Output starts here
 echo $OUTPUT->header();
