@@ -218,38 +218,41 @@ echo html_writer::start_tag('div', array('class' => 'learningbook-content'));
         $total_chapters = count($chapters);
         if ($total_chapters > 0) {
             $chapters_array = array_values($chapters);
-            foreach (array_reverse($chapters_array) as $index => $chapter) {
-                $content = $chapter->content;
-                // Strip HTML tags and get the first 100 characters as a preview
-                $preview = substr(strip_tags($content), 0, 100) . '...';
+            
+            // Cover page (leftmost)
+            echo '<div class="right">';
+            echo '<figure class="back"></figure>';
+            echo '<figure class="front" id="cover">';
+            echo '<h1>' . format_string($learningbook->name) . '</h1>';
+            echo '</figure>';
+            echo '</div>';
+            
+            // Chapter pages
+            for ($i = 0; $i < $total_chapters; $i += 2) {
+                echo '<div class="right">';
                 
-                if ($index == 0) {
-                    // First (rightmost) page
-                    echo '<div class="right">';
-                    echo '<figure class="back" id="back-cover"></figure>';
-                    echo '<figure class="front" id="cover">';
-                    echo '<h1>' . format_string($learningbook->name) . '</h1>';
-                    echo '<p>' . format_string($chapter->subtitle) . '</p>';
+                // Back of the page (even chapter)
+                $chapter = $chapters_array[$i];
+                $preview = substr(strip_tags($chapter->content), 0, 100) . '...';
+                echo '<figure class="back">';
+                echo '<h3>' . format_string($chapter->title) . '</h3>';
+                echo $preview;
+                echo '</figure>';
+                
+                // Front of the page (odd chapter, if exists)
+                if ($i + 1 < $total_chapters) {
+                    $next_chapter = $chapters_array[$i + 1];
+                    $next_preview = substr(strip_tags($next_chapter->content), 0, 100) . '...';
+                    echo '<figure class="front">';
+                    echo '<h3>' . format_string($next_chapter->title) . '</h3>';
+                    echo $next_preview;
                     echo '</figure>';
-                    echo '</div>';
                 } else {
-                    echo '<div class="right">';
-                    echo '<figure class="back">';
-                    echo '<h3>' . format_string($chapter->title) . '</h3>';
-                    echo $preview;
-                    echo '</figure>';
-                    if ($index < $total_chapters - 1) {
-                        $next_chapter = $chapters_array[$total_chapters - $index - 1];
-                        $next_preview = substr(strip_tags($next_chapter->content), 0, 100) . '...';
-                        echo '<figure class="front">';
-                        echo '<h3>' . format_string($next_chapter->title) . '</h3>';
-                        echo $next_preview;
-                        echo '</figure>';
-                    } else {
-                        echo '<figure class="front"></figure>';
-                    }
-                    echo '</div>';
+                    // If there's no next chapter, display an empty front
+                    echo '<figure class="front"></figure>';
                 }
+                
+                echo '</div>';
             }
         } else {
             echo '<p>No chapters found for this book.</p>';
