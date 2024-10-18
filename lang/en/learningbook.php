@@ -24,6 +24,7 @@ $string['chaptertitle'] = 'Chapter Title';
 $string['chaptersubtitle'] = 'Chapter Subtitle';
 
 $string['title'] = 'Title';
+$string['content'] = 'Content';
 
 $string['addtitle'] = 'Add Title';
 $string['addcontent'] = 'Add Content';

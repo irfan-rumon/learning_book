@@ -37,8 +37,9 @@ function learningbook_add_instance(stdClass $learningbook, mod_learningbook_mod_
 
     $learningbook->timecreated = time();
     $learningbook->timemodified = $learningbook->timecreated;
+    $learningbook->cm = $learningbook->coursemodule;
 
-    // Make sure the intro and introformat are set
+   
     if (!isset($learningbook->intro)) {
         $learningbook->intro = '';
     }
@@ -46,14 +47,12 @@ function learningbook_add_instance(stdClass $learningbook, mod_learningbook_mod_
         $learningbook->introformat = FORMAT_HTML;
     }
 
-    // Insert the learningbook record
+ 
     $learningbook->id = $DB->insert_record('learningbook', $learningbook);
 
-    // We need to use context now, so we need to make sure all needed info is already in db
-    $cmid = $learningbook->coursemodule;
-    $DB->set_field('course_modules', 'instance', $learningbook->id, array('id' => $cmid));
+    
+    $DB->set_field('course_modules', 'instance', $learningbook->id, array('id' => $cm));
 
-    // Any other processing needed
 
     return $learningbook->id;
 }

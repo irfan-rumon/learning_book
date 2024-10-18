@@ -40,11 +40,6 @@ echo html_writer::tag('button', 'Add New Chapter', array(
 echo html_writer::end_tag('div');
 
 
-// Replace the following lines with your actual content display logic
-echo $OUTPUT->heading(format_string($learningbook->name));
-
-
-
 // Book sliding content
 echo html_writer::start_tag('div', array('class' => 'learningbook-content'));
 ?>
